@@ -11,6 +11,8 @@ accelerator:
 
   imports:
   - name: java-version
+    expose:
+      - name: none
 
 engine:
   let:
