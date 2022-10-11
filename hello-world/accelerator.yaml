@@ -21,7 +21,7 @@ accelerator:
       text: TAP workload
     - value: none
       text: Skip  deployment configuration
-    defaultValue: manifest
+    defaultValue: workload
     required: true
   - name: message
     inputType: text
