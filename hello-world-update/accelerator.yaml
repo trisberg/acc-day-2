@@ -7,12 +7,17 @@ accelerator:
     fromVersion: 1.0.0
     toVersion: 1.0.1
     summary: |
-      Updates the Spring Boot version to 2.7.4
+      Updates the Spring Boot version to 2.7.4 and Java version to 17
+
+  imports:
+  - name: java-version
 
 engine:
   let:
     - name: bootVersion
       expression: "'2.7.4'"
+    - name: javaVersion
+      expression: "'17'"
   merge:
     - include: [ "**" ]
       exclude: [ "pom.xml" ]
@@ -22,3 +27,5 @@ engine:
         regex:
           pattern: "<artifactId>spring-boot-starter-parent</artifactId>\\n\\t\\t<version>.*<"
           with: "'<artifactId>spring-boot-starter-parent</artifactId>\n\t\t<version>' + #bootVersion + '<'"
+    - type: InvokeFragment
+      reference: java-version
