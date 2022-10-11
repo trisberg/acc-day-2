@@ -4,4 +4,4 @@ accelerator:
 options:
   deploymentType: "workload"
   message: "World"
-  projectName: "hello-world-update"
+  projectName: "hello-world"

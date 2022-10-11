@@ -1,5 +1,5 @@
 accelerator:
-  id: hello-world-update
+  id: hello-world
   version: 1.0.1
   displayName: Hello World Update
 

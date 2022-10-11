@@ -1,4 +1,4 @@
-# hello-world-update
+# hello-world
 
 This repo provides a simple Hello World sample project for Spring Boot.
 
@@ -24,7 +24,7 @@ You can modify the default message "World" using an application property of `app
 
 ```bash
 ./mvnw package  
-java -jar target/hello-world-update-0.0.1-SNAPSHOT.jar --app.message=Test
+java -jar target/hello-world-0.0.1-SNAPSHOT.jar --app.message=Test
 ```
 
 ### Deploying to TAP
@@ -40,9 +40,9 @@ tanzu apps workload apply -f config/workload.yaml
 If you would like deploy the code from tyour local working directory you can use the following command:
 
 ```bash
-tanzu apps workload create hello-world-update -f config/workload.yaml \
+tanzu apps workload create hello-world -f config/workload.yaml \
   --local-path . \
-  --source-image <REPOSITORY-PREFIX>/hello-world-update-source \
+  --source-image <REPOSITORY-PREFIX>/hello-world-source \
   --type web
 ```
 
@@ -51,7 +51,7 @@ tanzu apps workload create hello-world-update -f config/workload.yaml \
 Determine the URL to use for the accessing the app by running:
 
 ```
-tanzu apps workload get hello-world-update
+tanzu apps workload get hello-world
 ```
 
 To access the deployed app use the URL shown under "Workload Knative Services".
