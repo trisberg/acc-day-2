@@ -1,0 +1,7 @@
+accelerator:
+  id: "hello-world"
+  version: "1.0.0"
+options:
+  deploymentType: "workload"
+  message: "World"
+  projectName: "hello-world-update"
