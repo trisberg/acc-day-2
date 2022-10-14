@@ -1,4 +1,5 @@
 accelerator:
+  type: Update
   displayName: Spring Boot Add SQL database
   description: Updates the Spring Boot version to 2.7.4 and Java version to 17
 
