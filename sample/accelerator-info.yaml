@@ -1,0 +1,39 @@
+actions:
+- type: "generate-from-accelerator"
+  timestamp: "2022-10-13T11:30:22.000Z"
+  accelerator:
+    name: "hello-world"
+    git:
+      ref:
+        branch: main
+      subPath: hello-world
+      url: https://github.com/trisberg/acc-day-2.git
+      commit: 06f23b25fe7edae7a41a15f14e02e322a6c148c4
+    url: http://fluxcd-source-controller.flux-system.svc.cluster.local./gitrepository/accelerator-system/hello-world-acc-qf7jm/06f23b25fe7edae7a41a15f14e02e322a6c148c4.tar.gz?subPath=hello-world
+  options:
+    deploymentType: "workload"
+    message: "World"
+    projectName: "hello-world"
+- type: "run-update"
+  timestamp: "2022-10-14T14:37:48.000Z"
+  update:
+    name: "hello-world-update"
+  fragments:
+  - name: boot-upgrade
+    git:
+      url: https://github.com/trisberg/acc-day-2.git
+      ref:
+        branch: main
+      subPath: fragments/boot-upgrade
+      commit: dda85d1972d05f39c06a9d10af7e07a7b3841a74
+    url: http://fluxcd-source-controller.flux-system.svc.cluster.local./gitrepository/accelerator-system/boot-upgrade-frag-78tjs/dda85d1972d05f39c06a9d10af7e07a7b3841a74.tar.gz?subPath=fragments%2Fboot-upgrade
+  - name: java-version
+    source:
+      image: dev.registry.tanzu.vmware.com/app-accelerator/fragments/java-version@sha256:df99a5ace9513dc8d083fb5547e2a24770dfb08ec111b6591e98497a329b969d
+      imagePullSecrets:
+      - name: reg-creds
+      digest: df99a5ace9513dc8d083fb5547e2a24770dfb08ec111b6591e98497a329b969d
+    url: http://source-controller-manager-artifact-service.source-system.svc.cluster.local./imagerepository/accelerator-system/java-version-frag-97nwp/df99a5ace9513dc8d083fb5547e2a24770dfb08ec111b6591e98497a329b969d.tar.gz
+  options:
+    springBootVersion: "2.7.4"
+    javaVersion: "17"
