@@ -1,0 +1,35 @@
+accelerator:
+  displayName: Spring Boot Add SQL database
+  description: Updates the Spring Boot version to 2.7.4 and Java version to 17
+
+  options:
+    - name: databaseType
+      inputType: select
+      label: Database to use
+      choices:
+        - value: "postgres"
+          text: PostgreSQL
+        - value: "mysql"
+          text: MySQL
+      defaultValue: "postgres"
+      required: true
+
+  imports:
+    - name: spring-boot-postgresql
+    - name: spring-boot-mysql
+
+engine:
+  chain:
+    - include: [ "**" ]
+    - condition: "#databaseType == 'postgres'"
+      merge:
+        - type: InvokeFragment
+          reference: spring-boot-postgresql
+        - include: [ "**" ]
+      onConflict: UseFirst
+    - condition: "#databaseType == 'mysql'"
+      merge:
+      - type: InvokeFragment
+        reference: spring-boot-mysql
+      - include: [ "**" ]
+      onConflict: UseFirst

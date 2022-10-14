@@ -34,3 +34,15 @@ spec:
     ref:
       branch: main
     subPath: hello-world-update
+---
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Accelerator
+metadata:
+  name: hello-world-add-sql
+  namespace: accelerator-system
+spec:
+  git:
+    url: https://github.com/trisberg/acc-day-2.git
+    ref:
+      branch: main
+    subPath: hello-world-add-sql

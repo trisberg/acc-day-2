@@ -1,0 +1,16 @@
+actions:
+- type: "generate-from-accelerator"
+  timestamp: "2022-10-13T11:30:22.000Z"
+  accelerator:
+    name: "hello-world"
+    git:
+      ref:
+        branch: main
+      subPath: hello-world
+      url: https://github.com/trisberg/acc-day-2.git
+      commit: 06f23b25fe7edae7a41a15f14e02e322a6c148c4
+    url: http://fluxcd-source-controller.flux-system.svc.cluster.local./gitrepository/accelerator-system/hello-world-acc-qf7jm/06f23b25fe7edae7a41a15f14e02e322a6c148c4.tar.gz?subPath=hello-world
+  options:
+    deploymentType: "workload"
+    message: "World"
+    projectName: "hello-world"
