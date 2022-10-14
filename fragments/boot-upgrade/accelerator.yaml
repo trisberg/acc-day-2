@@ -1,0 +1,15 @@
+accelerator:
+  id: boot-upgrade
+  displayName: Spring Boot Update
+
+engine:
+  let:
+    - name: upgradeVersion
+      expression: "#springBootVersion == null ? '2.7.4' : #springBootVersion"
+  merge:
+    - include: [ "pom.xml" ]
+      chain:
+      - type: ReplaceText
+        regex:
+          pattern: "<artifactId>spring-boot-starter-parent</artifactId>\\n\\t\\t<version>.*<"
+          with: "'<artifactId>spring-boot-starter-parent</artifactId>\n\t\t<version>' + #upgradeVersion + '<'"

@@ -1,33 +1,26 @@
 accelerator:
-  id: hello-world
-  version: 1.0.1
-  displayName: Hello World Update
-
-  update:
-    fromVersion: 1.0.0
-    toVersion: 1.0.1
-    summary: |
-      Updates the Spring Boot version to 2.7.4 and Java version to 17
+  displayName: Spring Boot Update
+  description: Updates the Spring Boot version to 2.7.4 and Java version to 17
 
   imports:
+  - name: boot-upgrade
   - name: java-version
     expose:
       - name: none
 
 engine:
   let:
-    - name: bootVersion
+    - name: springBootVersion
       expression: "'2.7.4'"
     - name: javaVersion
       expression: "'17'"
-  merge:
+  chain:
     - include: [ "**" ]
-      exclude: [ "pom.xml" ]
-    - include: [ "pom.xml" ]
-      chain:
-      - type: ReplaceText
-        regex:
-          pattern: "<artifactId>spring-boot-starter-parent</artifactId>\\n\\t\\t<version>.*<"
-          with: "'<artifactId>spring-boot-starter-parent</artifactId>\n\t\t<version>' + #bootVersion + '<'"
-    - type: InvokeFragment
-      reference: java-version
+    - merge:
+      - include: [ "**" ]
+      - type: InvokeFragment
+        reference: boot-upgrade
+    - merge:
+      - include: [ "**" ]
+      - type: InvokeFragment
+        reference: java-version
